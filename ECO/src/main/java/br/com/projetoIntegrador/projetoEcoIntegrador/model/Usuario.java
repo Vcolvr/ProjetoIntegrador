@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-
 public class Usuario {
 
 	@Id
@@ -32,28 +31,28 @@ public class Usuario {
 	@Size(min = 3 , max = 50)
 	private String nomeCompletoUsuario;
 	
-	@NotNull(message = "Para entramos em contato infome o seu email.")
+	@NotNull(message = "Para entramos em contato, infome o seu email.")
 	@Size(min = 3 , max = 50)
 	private String emailUsuario;
 	
-	@NotNull(message = "Para sua segurança, digite uma senha. ")//estruturar melhor para deixar sensitivo (Valid faz quantidade de caracteres e tal. CaseSensitive é no front.)
+	@NotNull(message = "Para sua segurança, digite uma senha.")//estruturar melhor para deixar sensitvo 
 	@Size(min = 3 , max = 50)
-	private String senhaUsuario;
+	private String senhaUsuario ;
 	
-	@OneToMany(mappedBy =  "usuario" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy =  "usuario" , cascade = CascadeType.ALL )
 	@JsonIgnoreProperties("usuario")
+	private List<Produto> produtosUsuario;
 
-	private List<Produto> produtosUsuarios;
-
-	public Usuario(Long idUsuario,String nomeSocial, String nomeUsuario, String nomeCompletoUsuario, String emailUsuario, String senhaUsuario,
-			List<Produto> produtosUsuarios) {
+  public Usuario() {	
+	}	
+  
+	public Usuario(Long idUsuario,String nomeSocial, String nomeUsuario, String nomeCompletoUsuario, String emailUsuario, String senhaUsuario){
 		this.idUsuario = idUsuario;
 		this.nomeSocial = nomeSocial;
 		this.nomeUsuario = nomeUsuario;
 		this.nomeCompletoUsuario = nomeCompletoUsuario;
 		this.emailUsuario = emailUsuario;
 		this.senhaUsuario = senhaUsuario;
-		this.produtosUsuarios = produtosUsuarios;
 	}
 
 	public Usuario(Long idUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario,String nomeCompletoUsuario) {
@@ -63,6 +62,69 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 		this.nomeCompletoUsuario= nomeCompletoUsuario;
 	}
-	
 
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getNomeSocial() {
+		return nomeSocial;
+	}
+
+	public void setNomeSocial(String nomeSocial) {
+		this.nomeSocial = nomeSocial;
+	}
+
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
+
+	public String getNomeCompletoUsuario() {
+		return nomeCompletoUsuario;
+	}
+
+	public void setNomeCompletoUsuario(String nomeCompletoUsuario) {
+		this.nomeCompletoUsuario = nomeCompletoUsuario;
+	}
+
+	public String getEmailUsuario() {
+		return emailUsuario;
+	}
+
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
+	}
+
+	public String getSenhaUsuario() {
+		return senhaUsuario;
+	}
+
+	public void setSenhaUsuario(String senhaUsuario) {
+		this.senhaUsuario = senhaUsuario;
+	}
+
+	public List<Produto> getProdutosUsuario() {
+		return produtosUsuario;
+	}
+
+	public void setProdutosUsuario(List<Produto> produtosUsuario) {
+		this.produtosUsuario = produtosUsuario;
+  }
+  
+	public List<Produto> getProdutosUsuarios() {
+		return produtosUsuarios;
+	}
+
+	public void setProdutosUsuarios(List<Produto> produtosUsuarios) {
+		this.produtosUsuarios = produtosUsuarios;
+	}
+	
 }
